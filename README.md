@@ -5,7 +5,7 @@ Built with **Django**, this project provides a simple platform where users can v
 
 ## Tech Stack
 
-* Backend: Python + Django
+* Backend: Django Framework (Python)
 * Database: PostgreSQL
 * Frontend: HTML, CSS, JavaScript
 * Authentication: Django built-in authentication system
