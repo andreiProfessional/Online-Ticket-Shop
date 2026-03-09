@@ -1,0 +1,129 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+{% load static %}
+
+{% block title %}TICKet - Magazin de bilete online{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>Bine ați venit la TICKet!</h1>
+    <p style="font-size: 1.1em; color: #666;">Platforma ta de încredere pentru bilete la toate evenimentele!</p>
+</div>
+
+<!-- Secțiunea 1: Evenimentele săptămânii -->
+<section id="evenimente-saptamanii" style="margin-bottom: 50px;">
+    <h2>🎉 Evenimentele săptămânii</h2>
+    <p style="color: #666; margin-bottom: 20px;">Descoperă cele mai populare evenimente ale săptămânii</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: #f9f9f9;">
+            <h3 style="color: #667eea; margin-top: 0;">🎵 Concert Rock Live</h3>
+            <p><strong>Data:</strong> 8 Decembrie 2025</p>
+            <p><strong>Locație:</strong> Arena Națională</p>
+            <p><strong>Preț:</strong> de la 150 RON</p>
+            <p style="color: #666;">O seară memorabilă cu cele mai tari trupe rock!</p>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: #f9f9f9;">
+            <h3 style="color: #667eea; margin-top: 0;">⚽ Meci de fotbal</h3>
+            <p><strong>Data:</strong> 10 Decembrie 2025</p>
+            <p><strong>Locație:</strong> Stadionul Național</p>
+            <p><strong>Preț:</strong> de la 80 RON</p>
+            <p style="color: #666;">Derby-ul campionatului! Nu rata atmosfera!</p>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background: #f9f9f9;">
+            <h3 style="color: #667eea; margin-top: 0;">🎭 Spectacol de teatru</h3>
+            <p><strong>Data:</strong> 12 Decembrie 2025</p>
+            <p><strong>Locație:</strong> Teatrul Național</p>
+            <p><strong>Preț:</strong> de la 60 RON</p>
+            <p style="color: #666;">O piesă captivantă cu actori de renume!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Secțiunea 2: Recomandări -->
+<section id="recomandari" style="margin-bottom: 50px;">
+    <h2>⭐ Recomandări</h2>
+    <p style="color: #666; margin-bottom: 20px;">Evenimente selectate special pentru tine</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+        <div
+            style="border-left: 4px solid #667eea; padding: 15px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h4 style="margin-top: 0; color: #667eea;">🎤 Stand-up Comedy Night</h4>
+            <p style="margin: 5px 0;"><strong>5 Decembrie</strong> | Club Comedy</p>
+            <p style="color: #666; font-size: 0.9em;">Râzi până te doare! Cei mai buni comedianți.</p>
+        </div>
+
+        <div
+            style="border-left: 4px solid #667eea; padding: 15px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h4 style="margin-top: 0; color: #667eea;">🎸 Festival de Jazz</h4>
+            <p style="margin: 5px 0;"><strong>15 Decembrie</strong> | Green Hours</p>
+            <p style="color: #666; font-size: 0.9em;">O seară de jazz autentic cu artiști internaționali.</p>
+        </div>
+
+        <div
+            style="border-left: 4px solid #667eea; padding: 15px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h4 style="margin-top: 0; color: #667eea;">🎨 Expoziție de artă</h4>
+            <p style="margin: 5px 0;"><strong>20 Decembrie</strong> | Galeria Națională</p>
+            <p style="color: #666; font-size: 0.9em;">Descoperă opere de artă contemporană.</p>
+        </div>
+
+        <div
+            style="border-left: 4px solid #667eea; padding: 15px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h4 style="margin-top: 0; color: #667eea;">🎄 Concert de Crăciun</h4>
+            <p style="margin: 5px 0;"><strong>24 Decembrie</strong> | Sala Palatului</p>
+            <p style="color: #666; font-size: 0.9em;">Colinde și muzică de sărbători!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Secțiunea 3: Categorii populare -->
+<section id="categorii-populare" style="margin-bottom: 50px;">
+    <h2>🏆 Categorii populare</h2>
+    <p style="color: #666; margin-bottom: 20px;">Explorează evenimentele după categoria preferată</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <div
+            style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; cursor: pointer; transition: transform 0.3s;">
+            <div style="font-size: 3em; margin-bottom: 10px;">🎵</div>
+            <h3 style="margin: 10px 0; color: white;">Concerte</h3>
+            <p style="margin: 0; opacity: 0.9;">Rock, Pop, Jazz</p>
+        </div>
+
+        <div
+            style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 10px; color: white; cursor: pointer; transition: transform 0.3s;">
+            <div style="font-size: 3em; margin-bottom: 10px;">⚽</div>
+            <h3 style="margin: 10px 0; color: white;">Sport</h3>
+            <p style="margin: 0; opacity: 0.9;">Fotbal, Baschet, Tenis</p>
+        </div>
+
+        <div
+            style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 10px; color: white; cursor: pointer; transition: transform 0.3s;">
+            <div style="font-size: 3em; margin-bottom: 10px;">🎭</div>
+            <h3 style="margin: 10px 0; color: white;">Teatru</h3>
+            <p style="margin: 0; opacity: 0.9;">Dramă, Comedie</p>
+        </div>
+
+        <div
+            style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 10px; color: white; cursor: pointer; transition: transform 0.3s;">
+            <div style="font-size: 3em; margin-bottom: 10px;">🎤</div>
+            <h3 style="margin: 10px 0; color: white;">Stand-up</h3>
+            <p style="margin: 0; opacity: 0.9;">Comedie, Show-uri</p>
+        </div>
+
+        <div
+            style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 10px; color: white; cursor: pointer; transition: transform 0.3s;">
+            <div style="font-size: 3em; margin-bottom: 10px;">🎪</div>
+            <h3 style="margin: 10px 0; color: white;">Festivaluri</h3>
+            <p style="margin: 0; opacity: 0.9;">Muzică, Artă, Cultură</p>
+        </div>
+
+        <div
+            style="text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); border-radius: 10px; color: white; cursor: pointer; transition: transform 0.3s;">
+            <div style="font-size: 3em; margin-bottom: 10px;">🎨</div>
+            <h3 style="margin: 10px 0; color: white;">Expoziții</h3>
+            <p style="margin: 0; opacity: 0.9;">Artă, Muzee</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

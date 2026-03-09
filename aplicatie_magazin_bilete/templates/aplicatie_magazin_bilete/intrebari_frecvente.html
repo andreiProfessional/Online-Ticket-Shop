@@ -1,0 +1,278 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Întrebări frecvente - TICKet{% endblock %}
+
+{% block extra_css %}
+<style>
+    .faq-item {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .faq-question {
+        background: #f9f9f9;
+        padding: 20px;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-question:hover {
+        background: #f0f0f0;
+    }
+
+    .faq-answer {
+        padding: 20px;
+        background: white;
+        display: none;
+        border-top: 1px solid #ddd;
+    }
+
+    .faq-answer.active {
+        display: block;
+    }
+
+    .faq-icon {
+        font-size: 1.5em;
+        transition: transform 0.3s;
+    }
+
+    .faq-question.active .faq-icon {
+        transform: rotate(45deg);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>❓ Întrebări frecvente (FAQ)</h1>
+    <p style="font-size: 1.1em; color: #666;">Găsește răspunsuri la cele mai frecvente întrebări!</p>
+</div>
+
+<!-- Categorii FAQ -->
+<div style="max-width: 900px; margin: 0 auto;">
+    <!-- Categorie: Cumpărare bilete -->
+    <section style="margin-bottom: 40px;">
+        <h2 style="color: #667eea;">🎫 Cumpărare bilete</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Cum pot cumpăra bilete pe TICKet?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Pentru a cumpăra bilete, urmează acești pași simpli:
+                    <br>1. Caută evenimentul dorit în secțiunea Produse
+                    <br>2. Selectează numărul de bilete
+                    <br>3. Adaugă în coșul virtual
+                    <br>4. Completează datele de contact
+                    <br>5. Alege metoda de plată și finalizează comanda
+                    <br>Biletele vor fi trimise instant pe email!
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Ce metode de plată acceptați?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Acceptăm următoarele metode de plată:
+                    <br>• Card bancar (Visa, Mastercard, Maestro)
+                    <br>• PayPal
+                    <br>• Transfer bancar
+                    <br>• Apple Pay / Google Pay
+                    <br>Toate tranzacțiile sunt securizate și criptate.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Pot cumpăra bilete fără cont?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Da, poți cumpăra bilete ca și guest, fără să creezi un cont. Însă, îți recomandăm să creezi un cont
+                    pentru a putea:
+                    <br>• Salva biletele tale
+                    <br>• Primi recomandări personalizate
+                    <br>• Accesa istoric comenzi
+                    <br>• Primi notificări despre evenimente favorite
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorie: Bilete și livrare -->
+    <section style="margin-bottom: 40px;">
+        <h2 style="color: #667eea;">📧 Bilete și livrare</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Când primesc biletele?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Biletele electronice sunt trimise instant pe email, imediat după confirmarea plății.
+                    Verifică și folderul de spam dacă nu găsești emailul în inbox.
+                    De asemenea, poți descărca biletele din contul tău TICKet.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Ce fac dacă nu primesc biletele pe email?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Dacă nu primești biletele în 10 minute:
+                    <br>1. Verifică folderul de spam/junk
+                    <br>2. Verifică că adresa de email este corectă
+                    <br>3. Loghează-te în cont și descarcă biletele
+                    <br>4. Contactează echipa noastră de suport la contact@ticket.ro
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Trebuie să printez biletele?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Nu este obligatoriu! Poți prezenta biletele direct de pe telefon (format electronic).
+                    Asigură-te că bateria telefonului este încărcată și că biletele sunt salvate în galerie sau într-o
+                    aplicație de wallet.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorie: Rambursări și modificări -->
+    <section style="margin-bottom: 40px;">
+        <h2 style="color: #667eea;">💳 Rambursări și modificări</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Pot returna biletele?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Politica de returnare depinde de organizatorul evenimentului. În general:
+                    <br>• Returnare cu 100% din valoare: cu 30+ zile înainte
+                    <br>• Returnare cu 50% din valoare: cu 14-29 zile înainte
+                    <br>• Fără posibilitate de returnare: sub 14 zile înainte
+                    <br>Verifică mereu condițiile specifice ale fiecărui eveniment.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Pot transfera biletele altcuiva?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Da, în majoritatea cazurilor poți transfera biletele către altă persoană.
+                    Accesează contul tău, selectează comanda și folosește funcția "Transferă bilet".
+                    Introdu adresa de email a destinatarului și confirmă transferul.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Ce se întâmplă dacă evenimentul este anulat?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Dacă evenimentul este anulat, vei fi notificat prin email și vei primi rambursarea integrală
+                    a banilor în termen de 5-10 zile lucrătoare. Banii vor fi returnați pe metoda de plată folosită la
+                    achiziție.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorie: Cont și securitate -->
+    <section style="margin-bottom: 40px;">
+        <h2 style="color: #667eea;">🔒 Cont și securitate</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Cum îmi creez un cont?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Apasă pe butonul "Înregistrează-te" din colțul dreapta sus, completează formularul cu datele tale
+                    (nume, email, parolă) și confirmă adresa de email prin link-ul primit. Crearea contului este
+                    gratuită!
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3 style="margin: 0; color: #333; font-size: 1.1em;">Sunt datele mele în siguranță?</h3>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                <p style="color: #666; line-height: 1.6;">
+                    Da! Folosim criptare SSL pentru toate tranzacțiile și datele personale.
+                    Nu stocăm informații despre cardurile bancare. Datele tale sunt protejate conform GDPR.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact pentru întrebări -->
+    <div
+        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 10px; text-align: center; color: white; margin-top: 50px;">
+        <h2 style="color: white; margin-top: 0;">Nu ai găsit răspunsul?</h2>
+        <p style="font-size: 1.1em; margin-bottom: 25px;">Echipa noastră de suport este aici să te ajute!</p>
+        <button
+            style="padding: 15px 35px; background: white; color: #667eea; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; font-weight: bold;">Contactează-ne</button>
+    </div>
+</div>
+
+<script>
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const allQuestions = document.querySelectorAll('.faq-question');
+        const allAnswers = document.querySelectorAll('.faq-answer');
+
+        // Close all other FAQ items
+        allQuestions.forEach(q => {
+            if (q !== element) {
+                q.classList.remove('active');
+            }
+        });
+        allAnswers.forEach(a => {
+            if (a !== answer) {
+                a.classList.remove('active');
+            }
+        });
+
+        // Toggle current item
+        element.classList.toggle('active');
+        answer.classList.toggle('active');
+    }
+</script>
+{% endblock %}

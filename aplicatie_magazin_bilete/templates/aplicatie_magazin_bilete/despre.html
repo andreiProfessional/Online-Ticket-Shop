@@ -1,0 +1,145 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+{% load static %}
+
+{% block title %}Despre Noi - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>Despre TICKet</h1>
+    <p style="font-size: 1.1em; color: #666;">Pasiunea noastră pentru evenimente, la un click distanță!</p>
+</div>
+
+<!-- Secțiunea 1: Misiune și viziune -->
+<section id="misiune-viziune" style="margin-bottom: 50px;">
+    <h2>🎯 Misiune și viziune</h2>
+
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+        <div
+            style="padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white;">
+            <h3 style="color: white; margin-top: 0;">💡 Misiunea noastră</h3>
+            <p style="line-height: 1.8;">
+                TICKet și-a propus să revoluționeze modul în care oamenii accesează și achiziționează bilete pentru
+                evenimentele lor preferate. Ne dedicăm să oferim cea mai bună experiență de cumpărare online, printr-o
+                platformă simplă, sigură și rapidă. Transformăm procesul de achiziție a biletelor într-o experiență
+                plăcută și fără griji!
+            </p>
+        </div>
+
+        <div
+            style="padding: 25px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 10px; color: white;">
+            <h3 style="color: white; margin-top: 0;">🚀 Viziunea noastră</h3>
+            <p style="line-height: 1.8;">
+                Visăm să devenim platforma numărul unu pentru bilete în România, oferind acces instant la mii de
+                evenimente din toate categoriile. Vrem ca fiecare utilizator să găsească cu ușurință evenimentul
+                perfect și să își creeze amintiri de neuitat. Credem în puterea culturii și a evenimentelor de a
+                uni oamenii!
+            </p>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 30px; background: #f9f9f9; border-radius: 10px;">
+        <h3 style="color: #667eea; margin-top: 0;">✨ Valorile noastre</h3>
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+            <div style="text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 10px;">🔒</div>
+                <h4 style="color: #667eea; margin: 10px 0;">Siguranță</h4>
+                <p style="color: #666; font-size: 0.9em;">Tranzacții securizate și date protejate</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 10px;">⚡</div>
+                <h4 style="color: #667eea; margin: 10px 0;">Rapiditate</h4>
+                <p style="color: #666; font-size: 0.9em;">Bilete livrate instant pe email</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 10px;">🤝</div>
+                <h4 style="color: #667eea; margin: 10px 0;">Încredere</h4>
+                <p style="color: #666; font-size: 0.9em;">Parteneriate cu organizatori verificați</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 10px;">💎</div>
+                <h4 style="color: #667eea; margin: 10px 0;">Calitate</h4>
+                <p style="color: #666; font-size: 0.9em;">Experiență premium pentru utilizatori</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Secțiunea 2: Ghid interactiv -->
+<section id="ghid-interactiv" style="margin-bottom: 50px;">
+    <h2>📖 Ghid interactiv</h2>
+    <p style="color: #666; margin-bottom: 30px;">Cum să cumperi bilete pe TICKet în 5 pași simpli</p>
+
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div style="display: flex; gap: 20px; margin-bottom: 25px; align-items: start;">
+            <div
+                style="flex-shrink: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold;">
+                1</div>
+            <div
+                style="flex-grow: 1; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-top: 0;">Caută evenimentul dorit</h3>
+                <p style="color: #666; margin-bottom: 0;">Explorează categoriile sau folosește funcția de căutare pentru
+                    a găsi evenimentul perfect pentru tine.</p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; margin-bottom: 25px; align-items: start;">
+            <div
+                style="flex-shrink: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold;">
+                2</div>
+            <div
+                style="flex-grow: 1; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-top: 0;">Selectează locurile</h3>
+                <p style="color: #666; margin-bottom: 0;">Alege numărul de bilete și, dacă este disponibil, locurile
+                    preferate din sală.</p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; margin-bottom: 25px; align-items: start;">
+            <div
+                style="flex-shrink: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold;">
+                3</div>
+            <div
+                style="flex-grow: 1; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-top: 0;">Adaugă în coș</h3>
+                <p style="color: #666; margin-bottom: 0;">Verifică selecția și adaugă biletele în coșul virtual. Poți
+                    continua să cauți alte evenimente!</p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; margin-bottom: 25px; align-items: start;">
+            <div
+                style="flex-shrink: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold;">
+                4</div>
+            <div
+                style="flex-grow: 1; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-top: 0;">Finalizează comanda</h3>
+                <p style="color: #666; margin-bottom: 0;">Completează datele de contact și alege metoda de plată
+                    preferată (card, PayPal, transfer bancar).</p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; margin-bottom: 25px; align-items: start;">
+            <div
+                style="flex-shrink: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; font-weight: bold;">
+                5</div>
+            <div
+                style="flex-grow: 1; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-top: 0;">Primește biletele</h3>
+                <p style="color: #666; margin-bottom: 0;">Biletele electronice sunt trimise instant pe email!
+                    Salvează-le pe telefon sau printează-le.</p>
+            </div>
+        </div>
+    </div>
+
+    <div
+        style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white; text-align: center;">
+        <h3 style="color: white; margin-top: 0;">💡 Sfat util</h3>
+        <p style="margin-bottom: 0; font-size: 1.1em;">
+            Creează un cont pentru a salva biletele tale, a primi recomandări personalizate și a fi la curent cu
+            evenimentele favorite!
+        </p>
+    </div>
+</section>
+{% endblock %}

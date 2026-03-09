@@ -1,0 +1,206 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Produse - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    {% if categorie_curenta %}
+    <h1 class="category-title" style="--category-color: {{ categorie_curenta.culoare }};">
+        <span class="category-badge">
+            {{ categorie_curenta.denumire }}
+        </span>
+    </h1>
+    <p style="font-size: 1.1em; color: #666; max-width: 800px; margin: 10px auto;">
+        {{ categorie_curenta.descriere }}
+    </p>
+    {% else %}
+    <h1>📦 Produse </h1>
+    <p style="font-size: 1.1em; color: #666;">Descoperă toate biletele disponibile pentru evenimentele tale preferate!
+    </p>
+    {% endif %}
+</div>
+
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px solid #667eea;">
+    <details open>
+        <summary style="font-size: 1.2em; font-weight: bold; color: #667eea; cursor: pointer; margin-bottom: 15px;">
+            🔍 Filtre de căutare
+        </summary>
+
+        <form method="get" action="{% url 'produse' %}" style="margin-top: 20px;">
+            {% if form_filtru.non_field_errors %}
+            <div
+                style="background: #fee; border: 2px solid #f00; border-radius: 5px; padding: 15px; margin-bottom: 20px;">
+                {% for error in form_filtru.non_field_errors %}
+                <p style="color: #c00; margin: 0; font-weight: bold;">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if eroare_categorie %}
+            <div
+                style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 5px; padding: 15px; margin-bottom: 20px;">
+                <p style="color: #856404; margin: 0; font-weight: bold;">{{ eroare_categorie }}</p>
+            </div>
+            {% endif %}
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Nume eveniment</strong>
+                    {{ form_filtru.nume }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Categorie</strong>
+                    {% if categorie_curenta %}
+                    <select name="categorie_display" class="form-control" disabled
+                        style="background-color: #e9ecef; cursor: not-allowed;">
+                        <option selected>{{ categorie_curenta.denumire }}</option>
+                    </select>
+                    <input type="hidden" name="categorie" value="{{ categorie_curenta.id }}">
+                    {% else %}
+                    {{ form_filtru.categorie }}
+                    {% endif %}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Organizator</strong>
+                    {{ form_filtru.organizator }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Locație</strong>
+                    {{ form_filtru.locatie }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Dată de la</strong>
+                    {{ form_filtru.data_min }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Dată până la</strong>
+                    {{ form_filtru.data_max }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Oră de la</strong>
+                    {{ form_filtru.ora_min }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Oră până la</strong>
+                    {{ form_filtru.ora_max }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Durată minimă (ore)</strong>
+                    {{ form_filtru.durata_min_h }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Durată maximă (ore)</strong>
+                    {{ form_filtru.durata_max_h }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Capacitate minimă</strong>
+                    {{ form_filtru.capacitate_min }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Capacitate maximă</strong>
+                    {{ form_filtru.capacitate_max }}
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: 5px;">Elemente per pagină</strong>
+                    {{ form_filtru.elemente_per_pagina }}
+                </div>
+            </div>
+
+            {% if paginare_schimbata %}
+            <div
+                style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 5px; padding: 15px; margin-top: 20px;">
+                <p style="color: #856404; margin: 0; font-weight: bold;">
+                    ⚠️ Atenție! Numărul de elemente per pagină a fost schimbat. Este posibil să fi sărit peste unele
+                    evenimente sau să le vezi din nou pe cele deja vizualizate.
+                </p>
+            </div>
+            {% endif %}
+
+            {% if ordine_sortare %}
+            <input type="hidden" name="sort" value="{{ ordine_sortare }}">
+            {% endif %}
+            <div style="display: flex; gap: 15px; margin-top: 20px; justify-content: center;">
+                <button type="submit"
+                    style="padding: 12px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; font-weight: bold;">
+                    🔍 Aplică filtre
+                </button>
+                <a href="{% url 'produse' %}{% if ordine_sortare %}?sort={{ ordine_sortare }}{% endif %}"
+                    onclick="return confirm('⚠️ Atenție!\n\nEști pe cale să resetezi toate filtrele aplicate.\n\nToate căutările și selecțiile tale vor fi pierdute.\n\nDorești să continui?');"
+                    style="padding: 12px 30px; background: #6c757d; color: white; border: none; border-radius: 5px; font-size: 1em; cursor: pointer; text-decoration: none; display: inline-block; font-weight: bold;">
+                    ✖ Resetează filtre
+                </a>
+            </div>
+        </form>
+    </details>
+</div>
+
+{% if pagina_evenimente %}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px;">
+    {% for eveniment in pagina_evenimente %}
+    <div
+        style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column;">
+        {% if eveniment.url_imagine %}
+        <img src="{{ eveniment.url_imagine }}" alt="{{ eveniment.nume }}"
+            style="width: 100%; height: 180px; object-fit: contain; background: #f5f5f5;">
+        {% else %}
+        <div
+            style="height: 180px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 4em;">
+            🎫</div>
+        {% endif %}
+        <div style="padding: 20px; display: flex; flex-direction: column; flex: 1;">
+            <h3 style="color: #667eea; margin-top: 0;">{{ eveniment.nume }}</h3>
+            <p style="color: #666; margin: 10px 0;"><strong>📅 Data:</strong> {{ eveniment.data|date:"d F Y" }}</p>
+            <p style="color: #666; margin: 10px 0;"><strong>🕐 Ora:</strong> {{ eveniment.ora|time:"H:i" }}</p>
+            <p style="color: #666; margin: 10px 0;"><strong>📍 Locație:</strong> {{ eveniment.locatie.nume }}</p>
+            {% if eveniment.categorie %}
+            <div style="margin: 10px 0;">
+                <a href="{% url 'categorie' eveniment.categorie.get_url_name %}" style="text-decoration: none;">
+                    <span class="event-category-badge" style="--category-color: {{ eveniment.categorie.culoare }};">
+                        {{ eveniment.categorie.denumire }}
+                    </span>
+                </a>
+            </div>
+            {% endif %}
+            <div
+                style="display: flex; justify-content: center; align-items: center; margin-top: auto; padding-top: 20px;">
+                <a href="{% url 'eveniment_detalii' eveniment.id_eveniment %}" style="text-decoration: none;">
+                    <button
+                        style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Vezi
+                        bilete</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div style="margin-top: 40px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+    {% if pagina_evenimente.has_previous %}
+    <a href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+        style="padding: 10px 15px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">Primul</a>
+    <a href="?page={{ pagina_evenimente.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+        style="padding: 10px 15px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">Anterior</a>
+    {% endif %}
+
+    <span style="padding: 10px 20px; background: #f0f0f0; border-radius: 5px; font-weight: bold;">
+        Pagina {{ pagina_evenimente.number }} din {{ pagina_evenimente.paginator.num_pages }}
+    </span>
+
+    {% if pagina_evenimente.has_next %}
+    <a href="?page={{ pagina_evenimente.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+        style="padding: 10px 15px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">Următor</a>
+    <a href="?page={{ pagina_evenimente.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+        style="padding: 10px 15px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">Ultimul</a>
+    {% endif %}
+</div>
+
+<div style="text-align: center; margin-top: 20px; color: #666;">
+    <p>Se afișează evenimente {{ pagina_evenimente.start_index }} - {{ pagina_evenimente.end_index }} din
+        {{ pagina_evenimente.paginator.count }}</p>
+</div>
+{% else %}
+<div style="text-align: center; padding: 40px;">
+    <p style="font-size: 1.2em; color: #666;">Nu există evenimente disponibile pentru aceste filtre.</p>
+</div>
+{% endif %}
+{% endblock %}

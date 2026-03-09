@@ -1,0 +1,143 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Profil - {{ user_data.username }} - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>👤 Profilul Meu</h1>
+    <p style="font-size: 1.1em; color: #666;">Bine ai venit, <strong>{{ user_data.nume }}</strong>!</p>
+</div>
+
+<div style="max-width: 800px; margin: 0 auto;">
+    <div style="background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+        <!-- Informații principale -->
+        <div
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 10px; margin-bottom: 30px; color: white;">
+            <h2 style="margin-top: 0; color: white;">Informații Cont</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div>
+                    <p style="margin: 5px 0; opacity: 0.9; font-size: 0.9em;">Nume utilizator:</p>
+                    <p style="margin: 5px 0; font-size: 1.2em; font-weight: bold;">{{ user_data.username }}</p>
+                </div>
+                <div>
+                    <p style="margin: 5px 0; opacity: 0.9; font-size: 0.9em;">Tip cont:</p>
+                    <p style="margin: 5px 0; font-size: 1.2em; font-weight: bold;">
+                        {% if user_data.tip_cont == 'BRONZE' %}
+                        🥉 {{ user_data.tip_cont }}
+                        {% elif user_data.tip_cont == 'SILVER' %}
+                        🥈 {{ user_data.tip_cont }}
+                        {% elif user_data.tip_cont == 'GOLD' %}
+                        🥇 {{ user_data.tip_cont }}
+                        {% else %}
+                        {{ user_data.tip_cont }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Date personale -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #667eea; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;">📋 Date Personale</h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">Nume complet</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #333;">{{ user_data.nume }}</p>
+                </div>
+
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">Email</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #333;">{{ user_data.email }}</p>
+                </div>
+
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">Țara</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #333;">
+                        {% if user_data.tara %}
+                        {{ user_data.tara }}
+                        {% else %}
+                        <span style="color: #999;">N/A</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">Telefon</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #333;">
+                        {% if user_data.telefon %}
+                        {{ user_data.telefon }}
+                        {% else %}
+                        <span style="color: #999;">N/A</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">CNP</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #333;">
+                        {% if user_data.cnp %}
+                        {{ user_data.cnp }}
+                        {% else %}
+                        <span style="color: #999;">N/A</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div style="padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">Poză profil</p>
+                    <p style="margin: 5px 0 0 0; font-weight: bold; color: #333;">
+                        {% if user_data.poza %}
+                        <a href="{{ user_data.poza }}" target="_blank"
+                            style="color: #667eea; text-decoration: none;">Vezi poza</a>
+                        {% else %}
+                        <span style="color: #999;">N/A</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acțiuni -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <h3 style="color: #667eea; margin-bottom: 20px;">⚙️ Acțiuni Cont</h3>
+
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="{% url 'schimbare_parola' %}"
+                    style="display: inline-block; padding: 12px 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.2s;">
+                    🔒 Schimbă Parola
+                </a>
+
+                <a href="{% url 'logout' %}"
+                    style="display: inline-block; padding: 12px 25px; background: #dc3545; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.2s;">
+                    🚪 Deconectare
+                </a>
+
+                <a href="{% url 'home' %}"
+                    style="display: inline-block; padding: 12px 25px; background: #6c757d; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.2s;">
+                    🏠 Înapoi la Acasă
+                </a>
+            </div>
+        </div>
+
+        <!-- Info box -->
+        <div style="background: #e8eaf6; padding: 15px; border-radius: 5px; margin-top: 25px;">
+            <h4 style="color: #667eea; margin-top: 0; font-size: 1em;">ℹ️ Informații:</h4>
+            <ul style="color: #666; margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+                <li>Toate datele sunt memorate în sesiune și sunt protejate</li>
+                <li>Sesiunea ta va expira în funcție de opțiunea "remember me" selectată la login</li>
+                <li>Poți schimba parola oricând folosind butonul de mai sus</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+{% endblock %}

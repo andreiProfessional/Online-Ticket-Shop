@@ -1,0 +1,129 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Coș Virtual - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>🛒 Coșul tău virtual</h1>
+    <p style="font-size: 1.1em; color: #666;">Revizuiește și finalizează comanda ta!</p>
+</div>
+
+<div style="max-width: 900px; margin: 0 auto;">
+    <!-- Produse în coș -->
+    <div
+        style="background: #fff; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h2 style="color: #667eea; margin-top: 0;">Produse adăugate (3)</h2>
+
+        <!-- Item 1 -->
+        <div style="display: flex; gap: 20px; padding: 20px; border-bottom: 1px solid #eee; align-items: center;">
+            <div
+                style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em;">
+                🎵</div>
+            <div style="flex-grow: 1;">
+                <h3 style="color: #333; margin: 0 0 5px 0;">Concert Rock Festival</h3>
+                <p style="color: #666; margin: 5px 0; font-size: 0.9em;">📅 15 Decembrie 2025 | Arena Națională</p>
+                <p style="color: #667eea; font-weight: bold; margin: 5px 0;">150 RON x 2 bilete</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button
+                    style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer;">-</button>
+                <span style="padding: 5px 15px; border: 1px solid #ddd; border-radius: 3px;">2</span>
+                <button
+                    style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer;">+</button>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-size: 1.2em; font-weight: bold; color: #667eea; margin: 0;">300 RON</p>
+                <button
+                    style="margin-top: 10px; padding: 5px 15px; background: #ff4444; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 0.9em;">Șterge</button>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div style="display: flex; gap: 20px; padding: 20px; border-bottom: 1px solid #eee; align-items: center;">
+            <div
+                style="width: 80px; height: 80px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em;">
+                🎭</div>
+            <div style="flex-grow: 1;">
+                <h3 style="color: #333; margin: 0 0 5px 0;">Spectacol Teatru</h3>
+                <p style="color: #666; margin: 5px 0; font-size: 0.9em;">📅 20 Decembrie 2025 | Teatrul Național</p>
+                <p style="color: #667eea; font-weight: bold; margin: 5px 0;">60 RON x 1 bilet</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button
+                    style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer;">-</button>
+                <span style="padding: 5px 15px; border: 1px solid #ddd; border-radius: 3px;">1</span>
+                <button
+                    style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer;">+</button>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-size: 1.2em; font-weight: bold; color: #667eea; margin: 0;">60 RON</p>
+                <button
+                    style="margin-top: 10px; padding: 5px 15px; background: #ff4444; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 0.9em;">Șterge</button>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div style="display: flex; gap: 20px; padding: 20px; align-items: center;">
+            <div
+                style="width: 80px; height: 80px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2em;">
+                🎤</div>
+            <div style="flex-grow: 1;">
+                <h3 style="color: #333; margin: 0 0 5px 0;">Stand-up Comedy</h3>
+                <p style="color: #666; margin: 5px 0; font-size: 0.9em;">📅 22 Decembrie 2025 | Club Comedy</p>
+                <p style="color: #667eea; font-weight: bold; margin: 5px 0;">45 RON x 1 bilet</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button
+                    style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer;">-</button>
+                <span style="padding: 5px 15px; border: 1px solid #ddd; border-radius: 3px;">1</span>
+                <button
+                    style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer;">+</button>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-size: 1.2em; font-weight: bold; color: #667eea; margin: 0;">45 RON</p>
+                <button
+                    style="margin-top: 10px; padding: 5px 15px; background: #ff4444; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 0.9em;">Șterge</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sumar comandă -->
+    <div
+        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; padding: 25px; color: white;">
+        <h2 style="color: white; margin-top: 0;">Sumar comandă</h2>
+
+        <div
+            style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.3);">
+            <span>Subtotal:</span>
+            <span style="font-weight: bold;">405 RON</span>
+        </div>
+
+        <div
+            style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.3);">
+            <span>Taxa de procesare:</span>
+            <span style="font-weight: bold;">20 RON</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 1.3em;">
+            <span style="font-weight: bold;">Total:</span>
+            <span style="font-weight: bold;">425 RON</span>
+        </div>
+
+        <button
+            style="width: 100%; padding: 15px; background: white; color: #667eea; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; font-weight: bold; margin-bottom: 10px;">Finalizează
+            comanda</button>
+
+        <button
+            style="width: 100%; padding: 15px; background: transparent; color: white; border: 2px solid white; border-radius: 5px; font-size: 1em; cursor: pointer;">Continuă
+            cumpărăturile</button>
+    </div>
+
+    <!-- Coș gol (alternativ - ascuns când sunt produse) -->
+    <!-- <div style="text-align: center; padding: 60px 20px; background: #f9f9f9; border-radius: 10px;">
+        <div style="font-size: 5em; margin-bottom: 20px;">🛒</div>
+        <h2 style="color: #666;">Coșul tău este gol</h2>
+        <p style="color: #999; margin-bottom: 30px;">Adaugă produse pentru a continua!</p>
+        <button style="padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;">Explorează evenimente</button>
+    </div> -->
+</div>
+{% endblock %}

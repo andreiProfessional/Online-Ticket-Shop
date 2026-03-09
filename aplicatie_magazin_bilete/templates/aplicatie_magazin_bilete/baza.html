@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TICKet - Magazin de bilete{% endblock %}</title>
+    <link rel="icon" type="image/jpeg" href="{% static 'aplicatie_magazin_bilete/imagini/favicon.jpg' %}">
+    <link rel="stylesheet" href="{% static 'aplicatie_magazin_bilete/css/meniu.css' %}">
+    <link rel="stylesheet" href="{% static 'aplicatie_magazin_bilete/css/categorie.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">Acasă</a>
+                    <ul>
+                        <li><a href="{% url 'home' %}#evenimente-saptamanii">Evenimentele săptămânii</a></li>
+                        <li><a href="{% url 'home' %}#recomandari">Recomandări</a></li>
+                        <li><a href="{% url 'home' %}#categorii-populare">Categorii populare</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'despre' %}">Despre</a>
+                    <ul>
+                        <li><a href="{% url 'despre' %}#misiune-viziune">Misiune și viziune</a></li>
+                        <li><a href="{% url 'despre' %}#ghid-interactiv">Ghid interactiv</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'produse' %}">Produse</a>
+                </li>
+                <li>
+                    <a href="#">Categorii</a>
+                    <ul>
+                        {% for categorie in categorii_evenimente %}
+                        <li><a href="{%url 'categorie' categorie.get_url_name %}">{{categorie.denumire}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li>
+                    <a href="{% url 'cos_virtual' %}">Coș Virtual</a>
+                </li>
+                <li>
+                    <a href="{% url 'sponsori' %}">Sponsori & Colaborări</a>
+                </li>
+                <li>
+                    <a href="{% url 'intrebari_frecvente' %}">Întrebări frecvente</a>
+                </li>
+                {% if request.session.user_id %}
+                <li>
+                    <a href="{%url 'profil'%}" style="color:#667eea;font-weight:bold;">{{request.session.username}}</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Login</a>
+                </li>
+                <li>
+                    <a href="{% url 'inregistrare' %}">Înregistrare</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TICKet - Magazin de bilete online</p>
+        <p>IP-ul dumneavoastră: {{ user_ip }}</p>
+    </footer>
+</body>
+
+</html>

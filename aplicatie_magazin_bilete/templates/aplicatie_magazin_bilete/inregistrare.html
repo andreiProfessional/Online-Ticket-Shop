@@ -1,0 +1,170 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Înregistrare - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>🔐 Înregistrare Utilizator</h1>
+    <p style="font-size: 1.1em; color: #666;">Creează-ți un cont pentru a avea acces complet la platformă!</p>
+</div>
+
+<div style="max-width: 700px; margin: 0 auto;">
+    <div style="background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #667eea; margin-top: 0; text-align: center;">Formular de Înregistrare</h2>
+
+        {% if succes %}
+        <div
+            style="background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-bottom: 25px; border: 1px solid #c3e6cb; text-align: center;">
+            <strong>✓ Succes!</strong> {{ mesaj_succes }}
+            <p style="margin: 10px 0 0 0;">Poți acum să te autentifici!</p>
+        </div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+        <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+            <strong>Eroare:</strong>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div style="background: #f0f4ff; padding: 20px; border-radius: 5px; margin-bottom: 25px;">
+                <h3 style="color: #667eea; margin-top: 0; font-size: 1.1em;">📝 Informații Obligatorii</h3>
+
+                {% for field in form %}
+                {% if field.name == 'username' or field.name == 'email' or field.name == 'parola' or field.name == 'confirmare_parola' or field.name == 'nume' or field.name == 'tip_cont' %}
+                <div style="margin-bottom: 18px;">
+                    <label for="{{ field.id_for_label }}"
+                        style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                        {{ field.label }}{% if field.field.required %} <span style="color: #dc3545;">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <small style="display: block; margin-top: 5px; color: #666;">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% if field.errors %}
+                    <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                        {% for error in field.errors %}
+                        ❌ {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div
+                style="background: #fff9e6; padding: 20px; border-radius: 5px; margin-bottom: 25px; border: 1px dashed #ffc107;">
+                <h3 style="color: #f57c00; margin-top: 0; font-size: 1.1em;">🔍 Informații Opționale</h3>
+                <p style="margin: 0 0 15px 0; color: #666; font-size: 0.95em;">
+                    Aceste câmpuri sunt opționale, dar dacă le completezi trebuie să respecte formatul corect:
+                </p>
+
+                {% for field in form %}
+                {% if field.name == 'tara' or field.name == 'cnp' or field.name == 'telefon' or field.name == 'poza' %}
+                <div style="margin-bottom: 18px;">
+                    <label for="{{ field.id_for_label }}"
+                        style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                        {{ field.label }}{% if field.field.required %} <span style="color: #dc3545;">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+
+                    {% if field.name == 'cnp' %}
+                    <small style="display: block; margin-top: 5px; color: #666;">
+                        📌 Format: 13 cifre (ex: 1990101234567). Cifra de control va fi verificată automat.
+                    </small>
+                    {% elif field.name == 'telefon' %}
+                    <small style="display: block; margin-top: 5px; color: #666;">
+                        📌 Format: +40712345678 sau 0712345678
+                    </small>
+                    {% elif field.name == 'tara' %}
+                    <small style="display: block; margin-top: 5px; color: #666;">
+                        📌 Selectați țara din lista disponibilă
+                    </small>
+                    {% elif field.name == 'poza' %}
+                    <small style="display: block; margin-top: 5px; color: #666;">
+                        📌 URL către imagine (.jpg, .png, .gif, .webp, .svg)
+                    </small>
+                    {% endif %}
+
+                    {% if field.errors %}
+                    <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                        {% for error in field.errors %}
+                        ❌ {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <button type="submit"
+                style="width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-size: 1.2em; cursor: pointer; font-weight: bold; transition: transform 0.2s;">
+                🚀 Creează Cont
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <p style="color: #666; margin: 5px 0;">
+                Ai deja cont? <a href="#"
+                    style="color: #667eea; text-decoration: none; font-weight: bold;">Autentifică-te aici</a>
+            </p>
+        </div>
+
+        <div style="background: #e8eaf6; padding: 15px; border-radius: 5px; margin-top: 20px;">
+            <h4 style="color: #667eea; margin-top: 0; font-size: 1em;">ℹ️ Informații importante:</h4>
+            <ul style="color: #666; margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+                <li>Câmpurile marcate cu <span style="color: #dc3545;">*</span> sunt obligatorii</li>
+                <li>Parola va fi criptată automat pentru securitate</li>
+                <li>Username-ul și email-ul trebuie să fie unice</li>
+                <li>CNP-ul (dacă completat) trebuie să aibă 13 cifre și cifră de control validă</li>
+                <li>Telefonul trebuie să fie în format românesc</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="url"],
+    select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="url"]:focus,
+    select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    button[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    button[type="submit"]:active {
+        transform: translateY(0);
+    }
+</style>
+{% endblock %}

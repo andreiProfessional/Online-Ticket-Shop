@@ -1,0 +1,141 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Schimbare Parolă - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>🔒 Schimbare Parolă</h1>
+    <p style="font-size: 1.1em; color: #666;">Actualizează-ți parola pentru a-ți securiza contul</p>
+</div>
+
+<div style="max-width: 550px; margin: 0 auto;">
+    <div style="background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #667eea; margin-top: 0; text-align: center;">Formular Schimbare Parolă</h2>
+
+        {% if succes %}
+        <div
+            style="background: #d4edda; color: #155724; padding: 20px; border-radius: 5px; margin-bottom: 25px; border: 1px solid #c3e6cb; text-align: center;">
+            <strong>✓ Succes!</strong> Parola ta a fost schimbată cu succes!
+            <p style="margin: 10px 0 0 0;">Poți acum să te autentifici cu noua parolă.</p>
+        </div>
+        {% endif %}
+
+        {% if eroare %}
+        <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb; text-align: center;">
+            <strong>❌ Eroare:</strong> {{ eroare }}
+        </div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+        <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+            <strong>Eroare:</strong>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div style="margin-bottom: 20px;">
+                <label for="{{ form.parola_veche.id_for_label }}"
+                    style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                    {{ form.parola_veche.label }} <span style="color: #dc3545;">*</span>
+                </label>
+                {{ form.parola_veche }}
+                {% if form.parola_veche.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in form.parola_veche.errors %}
+                    ❌ {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="{{ form.parola_noua.id_for_label }}"
+                    style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                    {{ form.parola_noua.label }} <span style="color: #dc3545;">*</span>
+                </label>
+                {{ form.parola_noua }}
+                {% if form.parola_noua.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in form.parola_noua.errors %}
+                    ❌ {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label for="{{ form.confirmare_parola_noua.id_for_label }}"
+                    style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                    {{ form.confirmare_parola_noua.label }} <span style="color: #dc3545;">*</span>
+                </label>
+                {{ form.confirmare_parola_noua }}
+                {% if form.confirmare_parola_noua.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in form.confirmare_parola_noua.errors %}
+                    ❌ {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <button type="submit"
+                style="width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-size: 1.2em; cursor: pointer; font-weight: bold; transition: transform 0.2s;">
+                🔐 Schimbă Parola
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <p style="color: #666; margin: 5px 0;">
+                <a href="{% url 'profil' %}" style="color: #667eea; text-decoration: none; font-weight: bold;">← Înapoi
+                    la Profil</a>
+            </p>
+        </div>
+
+        <div
+            style="background: #fff3cd; padding: 15px; border-radius: 5px; margin-top: 20px; border: 1px solid #ffc107;">
+            <h4 style="color: #856404; margin-top: 0; font-size: 1em;">⚠️ Atenție:</h4>
+            <ul style="color: #856404; margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+                <li>Asigură-te că noua parolă este sigură și diferită de cea veche</li>
+                <li>După schimbarea parolei, vei fi deconectat automat</li>
+                <li>Va trebui să te autentifici din nou cu noua parolă</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
+
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    button[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    button[type="submit"]:active {
+        transform: translateY(0);
+    }
+</style>
+{% endblock %}

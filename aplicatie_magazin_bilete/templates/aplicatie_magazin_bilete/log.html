@@ -1,0 +1,240 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Jurnal de accesări - TICKet{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f5f5f5;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .eroare {
+        background-color: #ffcccc;
+        border: 1px solid #cc0000;
+        padding: 10px;
+        margin: 20px 0;
+        border-radius: 5px;
+        color: #cc0000;
+    }
+
+    .info {
+        background-color: #cce5ff;
+        border: 1px solid #0066cc;
+        padding: 10px;
+        margin: 20px 0;
+        border-radius: 5px;
+        color: #0066cc;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .no-data {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        margin: 20px 0;
+        border-radius: 5px;
+    }
+
+    .detalii-section {
+        background-color: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .detalii-section h2 {
+        color: #333;
+        margin-top: 0;
+    }
+
+    .detalii-section ul {
+        list-style-type: disc;
+        padding-left: 30px;
+    }
+
+    .detalii-section li {
+        padding: 5px 0;
+    }
+
+    .tabel-custom {
+        background-color: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tabel-custom h2 {
+        color: #333;
+        margin-top: 0;
+    }
+
+    .lista-accesari {
+        background-color: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .lista-accesari h2 {
+        color: #333;
+        margin-top: 0;
+    }
+
+    .lista-accesari ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .lista-accesari li {
+        padding: 10px;
+        margin: 5px 0;
+        background-color: #f9f9f9;
+        border-left: 3px solid #4CAF50;
+        border-radius: 3px;
+    }
+
+    .statistici-pagini {
+        background-color: #fffacd;
+        border: 1px solid #ffd700;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+    }
+
+    .statistici-pagini h2 {
+        color: #b8860b;
+        margin-top: 0;
+        font-size: 1.2em;
+    }
+
+    .statistici-pagini p {
+        margin: 10px 0;
+        color: #333;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Jurnal de accesări</h1>
+
+{% if eroare %}
+<div class="eroare">
+    <strong>Eroare:</strong> {{ eroare }}
+</div>
+{% endif %}
+
+{% if numar_total_accesari %}
+<div class="info">
+    <strong>Număr total de accesări:</strong> {{ numar_total_accesari }}
+</div>
+{% endif %}
+
+{% if detalii_accesari %}
+<div class="detalii-section">
+    <h2>Detalii accesări</h2>
+    <ul>
+        {% for accesare in detalii_accesari %}
+        <li>{{ accesare.data | date:"d.m.Y - H:i:s" }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% if coloane_tabel %}
+<div class="tabel-custom">
+    <h2>Tabel accesări personalizat</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for coloana in coloane_tabel %}
+                <th>
+                    {% if coloana == "id" %}ID
+                    {% elif coloana == "ip" %}IP Client
+                    {% elif coloana == "pagina" %}Pagină
+                    {% elif coloana == "url" %}URL Complet
+                    {% elif coloana == "data" %}Data și Ora
+                    {% endif %}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for accesare in accesari %}
+            <tr>
+                {% for coloana in coloane_tabel %}
+                <td>
+                    {% if coloana == "id" %}{{ accesare.id }}
+                    {% elif coloana == "ip" %}{{ accesare.ip_client }}
+                    {% elif coloana == "pagina" %}{{ accesare.pagina }}
+                    {% elif coloana == "url" %}{{ accesare.url }}
+                    {% elif coloana == "data" %}{{ accesare.data|date:"d.m.Y - H:i:s" }}
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+
+<div class="lista-accesari">
+    <h2>Lista accesări</h2>
+    <ul>
+        {% for accesare in accesari %}
+        <li>
+            <strong>ID:</strong> {{ accesare.id }} |
+            <strong>IP:</strong> {{ accesare.ip_client }} |
+            <strong>Pagină:</strong> {{ accesare.pagina }} |
+            <strong>URL:</strong> {{ accesare.url }} |
+            <strong>Data:</strong> {{ accesare.data|date:"d.m.Y - H:i:s" }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% if pagina_mai_accesata or pagina_mai_putin_accesata %}
+<div class="statistici-pagini">
+    <h2>Statistici pagini</h2>
+    {% if pagina_mai_accesata %}
+    <p><strong>Pagina cel mai mult accesată:</strong> {{ pagina_mai_accesata }}</p>
+    {% endif %}
+    {% if pagina_mai_putin_accesata %}
+    <p><strong>Pagina cel mai puțin accesată:</strong> {{ pagina_mai_putin_accesata }}</p>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

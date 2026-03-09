@@ -1,0 +1,47 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Informații despre server - TICKet{% endblock %}
+
+{% block content %}
+<h1>Informații despre server</h1>
+
+<section>
+    <h2>Data și ora</h2>
+    {% if timp.zi_saptamana %}
+    <p><strong>Dată:</strong> {{ timp.zi_saptamana }},
+        {{ timp.zi_luna }} {{ timp.luna}} {{ timp.an }}</p>
+    {% endif %}
+    {% if timp.ora %}
+    <p><strong>Oră:</strong> {{ timp.ora }}</p>
+    {% endif %}
+</section>
+
+
+<section>
+    <h2>Detalii accesare</h2>
+    <p><strong>ID accesare:</strong> {{ accesare.id }}</p>
+    <p><strong>IP client:</strong> {{ accesare.ip_client }}</p>
+    <p><strong>Pagina accesată:</strong> {{ accesare.pagina }}</p>
+    <p><strong>Parametrii URL-ului:</strong></p>
+    <ul>
+        {% for cheie, valoare in accesare.lista_parametri %}
+        <li>{{ cheie }} -> {{ valoare }}</li>
+        {% empty %}
+        <li>Nu există parametri!</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <h2>Parametri</h2>
+    <p><strong>Număr parametri:</strong> {{ numar_parametri }}</p>
+    {% if numar_parametri > 0 %}
+    <p><strong>Nume parametri:</strong></p>
+    <ul>
+        {% for param in parametri %}
+        <li>{{ param }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</section>
+{% endblock %}

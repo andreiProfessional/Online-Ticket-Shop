@@ -1,0 +1,146 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Login - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>🔐 Autentificare</h1>
+    <p style="font-size: 1.1em; color: #666;">Autentifică-te pentru a accesa contul tău!</p>
+</div>
+
+<div style="max-width: 500px; margin: 0 auto;">
+    <div style="background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #667eea; margin-top: 0; text-align: center;">Formular de Login</h2>
+
+        {% if eroare %}
+        <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb; text-align: center;">
+            <strong>❌ Eroare:</strong> {{ eroare }}
+        </div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+        <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+            <strong>Eroare:</strong>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div style="margin-bottom: 20px;">
+                <label for="{{ form.username.id_for_label }}"
+                    style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                    {{ form.username.label }} <span style="color: #dc3545;">*</span>
+                </label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in form.username.errors %}
+                    ❌ {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="{{ form.parola.id_for_label }}"
+                    style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                    {{ form.parola.label }} <span style="color: #dc3545;">*</span>
+                </label>
+                {{ form.parola }}
+                {% if form.parola.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in form.parola.errors %}
+                    ❌ {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <div style="display: flex; align-items: center;">
+                    {{ form.remember_me }}
+                    <label for="{{ form.remember_me.id_for_label }}"
+                        style="margin-left: 8px; color: #333; cursor: pointer;">
+                        {{ form.remember_me.label }}
+                    </label>
+                </div>
+                <small style="display: block; margin-top: 5px; color: #666;">
+                    ℹ️ Dacă bifați această opțiune, veți rămâne autentificat timp de o zi. Altfel, sesiunea expiră
+                    la închiderea browserului.
+                </small>
+                {% if form.remember_me.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in form.remember_me.errors %}
+                    ❌ {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <button type="submit"
+                style="width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-size: 1.2em; cursor: pointer; font-weight: bold; transition: transform 0.2s;">
+                🚀 Autentifică-te
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px solid #e0e0e0;">
+            <p style="color: #666; margin: 5px 0;">
+                Nu ai cont? <a href="{% url 'inregistrare' %}"
+                    style="color: #667eea; text-decoration: none; font-weight: bold;">Înregistrează-te aici</a>
+            </p>
+        </div>
+
+        <div style="background: #e8eaf6; padding: 15px; border-radius: 5px; margin-top: 20px;">
+            <h4 style="color: #667eea; margin-top: 0; font-size: 1em;">ℹ️ Informații importante:</h4>
+            <ul style="color: #666; margin: 5px 0; padding-left: 20px; font-size: 0.9em;">
+                <li>Poți folosi fie username-ul, fie email-ul pentru autentificare</li>
+                <li>Bifează "Ține-mă minte" pentru a rămâne autentificat 24 de ore</li>
+                <li>Sesiunea este securizată și criptată</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    button[type="submit"]:active {
+        transform: translateY(0);
+    }
+</style>
+{% endblock %}

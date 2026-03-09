@@ -1,0 +1,110 @@
+{% extends "aplicatie_magazin_bilete/baza.html" %}
+
+{% block title %}Contact - TICKet{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin-bottom: 40px;">
+    <h1>📧 Contactează-ne</h1>
+    <p style="font-size: 1.1em; color: #666;">Suntem aici să te ajutăm! Trimite-ne un mesaj!</p>
+</div>
+
+<div
+    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+    <div style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color: #667eea; margin-top: 0;">Trimite-ne un mesaj</h2>
+
+        {% if succes %}
+        <div
+            style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #c3e6cb;">
+            <strong>✓ Succes!</strong> Mesajul tău a fost trimis cu succes! Îți mulțumim pentru că ne-ai contactat.
+        </div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+        <div
+            style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+            <strong>Eroare:</strong>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div style="margin-bottom: 20px;">
+                <label for="{{ field.id_for_label }}"
+                    style="display: block; margin-bottom: 5px; color: #333; font-weight: bold;">
+                    {{ field.label }}{% if field.field.required %} *{% endif %}
+                </label>
+                {{ field }}
+                {% if field.help_text %}
+                <small style="display: block; margin-top: 5px; color: #666;">{{ field.help_text }}</small>
+                {% endif %}
+                {% if field.errors %}
+                <div style="color: #dc3545; margin-top: 5px; font-size: 0.9em;">
+                    {% for error in field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit"
+                style="width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; font-weight: bold;">
+                Trimite mesajul
+            </button>
+        </form>
+    </div>
+
+    <div>
+        <div
+            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px; color: white; margin-bottom: 20px;">
+            <h2 style="color: white; margin-top: 0;">Informații de contact</h2>
+
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 1.5em; margin-bottom: 5px;">📍</div>
+                <h3 style="color: white; margin: 5px 0;">Adresă</h3>
+                <p style="margin: 5px 0;">Strada Exemplu nr. 123<br>București, România</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 1.5em; margin-bottom: 5px;">📞</div>
+                <h3 style="color: white; margin: 5px 0;">Telefon</h3>
+                <p style="margin: 5px 0;">+40 123 456 789</p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 1.5em; margin-bottom: 5px;">📧</div>
+                <h3 style="color: white; margin: 5px 0;">Email</h3>
+                <p style="margin: 5px 0;">contact@ticket.ro</p>
+            </div>
+
+            <div>
+                <div style="font-size: 1.5em; margin-bottom: 5px;">🕐</div>
+                <h3 style="color: white; margin: 5px 0;">Program</h3>
+                <p style="margin: 5px 0;">Luni - Vineri: 9:00 - 18:00<br>Sâmbătă: 10:00 - 14:00<br>Duminică: Închis</p>
+            </div>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 10px;">
+            <h3 style="color: #667eea; margin-top: 0;">Social Media</h3>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="#"
+                    style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #3b5998; color: white; border-radius: 50%; text-decoration: none; font-size: 1.2em;">f</a>
+                <a href="#"
+                    style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #1da1f2; color: white; border-radius: 50%; text-decoration: none; font-size: 1.2em;">t</a>
+                <a href="#"
+                    style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #e4405f; color: white; border-radius: 50%; text-decoration: none; font-size: 1.2em;">i</a>
+                <a href="#"
+                    style="display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: #0077b5; color: white; border-radius: 50%; text-decoration: none; font-size: 1.2em;">in</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
